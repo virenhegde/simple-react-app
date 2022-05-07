@@ -1,83 +1,42 @@
 import React,{ Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Banner from './components/banner'
+import Shopping from './components/shopping'
+import Login from './components/login'
 
-class Square extends Component {
-	
-	
-	state = {
-		
-		buttonVal : null
-	}
-	
-	
-viren =() => {
-	console.log('called bro000', this)
-	this.setState({buttonVal : 'X'})
-	//this.state.buttonVal = 'X'
-	
-}
-	
-  render() {
-    return (
-      <button className="square" onClick={this.viren}>
-	  {this.state.buttonVal}
-      </button>
-    );
-	
-	 
-  }
-  
-  
-  
-  
-  
- 
-}
 
-class Board extends Component {
-  renderSquare(i) {
-    return <Square viren={i} />;
+
+class MainPage extends Component {
+  state = {
+     'name' : '', 
+     'password' : ''
   }
 
-  render() {
-    const status = 'Next player: X';
+  setUser = (username, password) => {
+    console.log('set user called')
+    this.setState({name : username})
+    this.setState({password : password})
+  }
 
-    return (
+  isLoggedIn() {
+    if(this.state.name == '' || this.state.password == '') {
+      return <Login setUser={this.setUser}/>
+    }else {
+      return  (
       <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        <Banner/>
+        <Shopping username={this.state.name}/>
       </div>
-    );
+    )
+    }
   }
-}
 
-class Game extends Component {
+
   render() {
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
+      <div>{this.isLoggedIn()}</div>
     );
   }
 }
@@ -88,6 +47,6 @@ class Game extends Component {
 // ========================================
 
 ReactDOM.render(
-  <Game />,
+  <MainPage />,
   document.getElementById('root')
 );
