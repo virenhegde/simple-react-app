@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import toastr from 'toastr/build/toastr.min.js'
 class Login extends Component {
     state={
         username : 'viren',
@@ -7,6 +8,12 @@ class Login extends Component {
 
 
     submitClick = () => {
+        if (this.state.username == '') {
+            toastr.error('Please provide username')
+        }
+        if (this.state.password == '') {
+            toastr.error('Please provide password')
+        }
         this.props.setUser(this.state.username, this.state.password)
     }
     handleUsernameChange = (event) => {
@@ -35,11 +42,7 @@ render() {
                         </div>
                         <button className="btn btn-primary" onClick={this.submitClick}>login</button>
                 </div>
-</div>
-
-
-
-
+            </div>
         </div>
     )
 }

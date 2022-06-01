@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Banner from './components/banner'
 import Shopping from './components/shopping'
 import Login from './components/login'
+import 'toastr/build/toastr.min.css'
 
 
 
@@ -15,7 +16,6 @@ class MainPage extends Component {
   }
 
   setUser = (username, password) => {
-    console.log('set user called')
     this.setState({name : username})
     this.setState({password : password})
   }

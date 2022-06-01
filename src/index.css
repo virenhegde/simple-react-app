@@ -4,7 +4,18 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 28%;
+}
+.shopping-details .cart-border {
+  border: 1px solid grey;
   width: 50%;
+  height: 100px
+}
+
+.shopping .lang-style {
+  left: 82%;
+  position: absolute;
+  width: 100%;
 }
 
 
